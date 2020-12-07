@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": 1,
+    "email": "gonza@zeballos.com",
+    "password": "$2a$10$aWlk3uFyv.b1aHk2Z1/u1OgsvgAYuqtd1ZrB6e/ovtWfy8aJSE1ZC",
+    "avatar": "1607368581822 - imagen1.jpg"
+  },
+  {
+    "id": 2,
+    "email": "joaco@joaco.com",
+    "password": "$2a$10$peiJwuyhW4toYXGrzbT.FePOdSd9EUMj9.4Fbasz1ezfdJZ7GnDUe",
+    "avatar": "1607368603105 - imagen2.jpg"
+  },
+  {
+    "id": 3,
+    "email": "agustin@morcillo.com",
+    "password": "$2a$10$C74TJeNl6OS6PrJnBq54bO6BkltnR5lKXjOZBdlqnKEzEid2PtfUK",
+    "avatar": "1607368621236 - Imagen3.png"
+  }
+]

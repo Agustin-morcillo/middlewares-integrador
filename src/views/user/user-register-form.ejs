@@ -13,12 +13,22 @@
 				<h2 class="products-title">Registro</h2>
 			</div>
 			<div class="col-6">
+				<% if(typeof errors !="undefined"){ %> 
+					<% for(error of errors) {%> 
+					<p><%=error.msg%> </p>
+					<% } %>
+				<% } %> 
 				<form action="/user/register" method="POST" enctype="multipart/form-data">
 					<div class="row product-detail">
 						<div class="col-12">
 							<label for="email" class="form-label">Email: *</label>
+							<% if(typeof oldEmail !="undefined"){ %> 
+								<input type="text" id="email" name="email" placeholder="Ej: example@example.com" class="form-input" value="<%=oldEmail%>">
+							<% } else { %> 
 							<input type="text" id="email" name="email" placeholder="Ej: example@example.com" class="form-input" value="">
+							<% }  %> 
 						</div>
+				
 						<div class="col-12 row">
 							<label for="image" class="form-label col-12">Avatar:</label>
 							<input type="file" id="image" name="avatar" class="form-file col-12">
