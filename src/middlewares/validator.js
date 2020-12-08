@@ -12,14 +12,14 @@ module.exports={
             .withMessage("El campo de email no puede estar vacío")
             .bail()
             .isEmail()
-            .withMessage("Formato de email invalido")
+            .withMessage("Formato de email inválido")
             .bail()
             .custom((value)=>{
                 const users = allFunctions.getAllUsers()
                 const findUser = users.find((user)=>user.email==value)
                 return !findUser
             })
-            .withMessage("Ese email ya se encuentra en uso")
+            .withMessage("El email ingresado ya se encuentra en uso")
             .bail(),
         body("password")
             .notEmpty()
@@ -46,17 +46,14 @@ module.exports={
                 }
                 return false
             })
-            .withMessage("La imagen es obligatoria")
+            .withMessage("La imagen de avatar es obligatoria")
             .bail()
             .custom((value, {req})=>{
-                const imgFormats = [".jpg",".png",".jpeg"];
-                const fileExt = path.extname(req.files[0].originalname);
-                return imgFormats.includes(fileExt);
+                const imgAcceptedFormats = [".jpg",".png",".jpeg"];
+                const userUploadedImg = path.extname(req.files[0].originalname);
+                return imgAcceptedFormats.includes(userUploadedImg);
             })
-            .withMessage("El formato de la imagen no es valido, formatos aceptados: jpg, png & jpeg")
-        
-
-
+            .withMessage("Formato de imagen no valido, formatos aceptados: jpg, png & jpeg")
     ],
     login:[
         body("email")
@@ -64,20 +61,16 @@ module.exports={
             .withMessage("El campo de email no puede estar vacío")
             .bail()
             .isEmail()
-            .withMessage("Formato de email invalido")
+            .withMessage("Formato de email inválido")
             .bail()
             .custom((value,{req})=>{
                 const users = allFunctions.getAllUsers()
                 const userToFind = users.find((user)=>{
-                  return user.email == req.body.email
+                  return user.email == value
                  })
-                 if(userToFind){
-                    if(bcrypt.compareSync(req.body.password, userToFind.password)){
-                        return true;
-                    }
-                    return false;
+                 if(userToFind && bcrypt.compareSync(req.body.password, userToFind.password)){
+                    return true;
                 }
-                
                 return false;
             })
             .withMessage('Email o contraseña inválidos'),

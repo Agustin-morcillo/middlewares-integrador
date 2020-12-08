@@ -14,7 +14,7 @@ module.exports = {
         if(!errors.isEmpty()){
             return res.render("user/user-register-form",{errors:errors.errors,oldEmail:req.body.email})
         }
-        const users = allFunctions.getAllUsers();
+
         const newUser = {
             id: allFunctions.newUserId(),
             email: req.body.email,
@@ -32,14 +32,14 @@ module.exports = {
         const errors = validationResult(req);
 
         if(!errors.isEmpty()){
-            return res.render("user/user-login-form",{errors:errors.errors,old:req.body.email})
+            return res.render("user/user-login-form",{errors:errors.errors,oldEmail:req.body.email})
         }
         const users = allFunctions.getAllUsers()
         const userToFind = users.find((user)=>user.email==req.body.email)
         req.session.logeo = userToFind;
 
         if(req.body.remember){
-           res.cookie("user",userToFind.email,{ maxAge: 1000 * 60 * 60 })
+           res.cookie("user",userToFind.id,{ maxAge: 1000 * 60 * 60 * 24 * 365 })
         }
 
         return res.redirect("/")

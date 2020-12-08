@@ -1,6 +1,6 @@
 const authMiddleware = (req,res,next)=>{
     if(req.session.logeo){
-        next()
+       return next()
     }
     return res.redirect("/user/login")
 }

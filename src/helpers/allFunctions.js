@@ -13,7 +13,7 @@ const allFunctions ={
         const users = allFunctions.getAllUsers();
         const newUser = [...users,userToWrite];
         const NewUserString = JSON.stringify(newUser,null,2);
-        fs.writeFileSync(pathusersJSON, NewUserString);
+        return fs.writeFileSync(pathusersJSON, NewUserString);
     },
     newUserId: ()=>{
         const users = allFunctions.getAllUsers();

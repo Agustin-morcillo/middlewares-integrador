@@ -6,6 +6,7 @@ const multer = require("multer")
 const authMiddleware = require("../middlewares/auth");
 const guestMiddleware = require("../middlewares/guest")
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/images/users');
@@ -24,7 +25,7 @@ const upload = multer({
 router.get('/register', guestMiddleware,userController.showRegister);
 
 // Procesa la vista de registro
-router.post('/register',upload.any(), validator.register,guestMiddleware,userController.processRegister);
+router.post('/register',upload.any() ,validator.register,guestMiddleware,userController.processRegister);
 
 // Muestra la vista de login
 router.get('/login', guestMiddleware,userController.showLogin);
